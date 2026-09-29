@@ -4,6 +4,7 @@ import {
   ArrowRight, ArrowUpRight, Check, ChevronDown, Menu, Plus,
   Phone, MapPin, Mail, MessageCircle, X, Train, Plane, Bus, Building2,
   Clock, FlaskConical, BookOpen, Home, Trophy, Lightbulb, UtensilsCrossed,
+  LogIn, Navigation,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -38,6 +39,9 @@ const APPLY_URL = "https://agcamritsar.in/form/";
 const CALL_URL = "tel:+918872009951";
 const WHATSAPP_URL = "https://wa.me/918872009950";
 const EMAIL = "admission@acetedu.in";
+const LMS_URL = "https://agclms.in";
+const MAP_DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=Amritsar+Group+of+Colleges+12+Km+Stone+Amritsar";
+const MAP_EMBED_URL = "https://maps.google.com/maps?q=Amritsar%20Group%20of%20Colleges%2C%2012%20Km%20Stone%2C%20Amritsar-Jalandhar%20G.T.%20Road%2C%20Amritsar%2C%20Punjab%20143001&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
 const schools = [
   {
@@ -193,10 +197,18 @@ function Index() {
             <a className="transition-colors hover:text-gold" href="#programs">Programs</a>
             <a className="transition-colors hover:text-gold" href="#admissions">Admissions</a>
             <a className="transition-colors hover:text-gold" href="#campus">Campus</a>
+            <a className="transition-colors hover:text-gold" href="#location">Location &amp; Map</a>
             <a className="transition-colors hover:text-gold" href="#leadership">Leadership</a>
             <a className="transition-colors hover:text-gold" href="#enquire">Contact</a>
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <Button asChild variant="outline" className="h-10 border-border px-3.5 text-xs font-semibold uppercase tracking-wider text-foreground hover:bg-muted hover:text-foreground">
+              <a href={LMS_URL} target="_blank" rel="noopener noreferrer" title="Student and faculty LMS login portal (agclms.in)">
+                <LogIn className="h-3.5 w-3.5 text-magenta" />
+                <span>Login</span>
+                <ArrowUpRight className="hidden sm:inline h-3 w-3 text-muted-foreground" aria-hidden="true" />
+              </a>
+            </Button>
             <ApplyLink className="hidden h-10 px-5 sm:inline-flex" />
             <Button
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -212,9 +224,38 @@ function Index() {
         </div>
         {menuOpen && (
           <nav aria-label="Mobile navigation" className="flex flex-col border-t border-border bg-white px-5 py-3 lg:hidden">
-            {[["Programs", "#programs"], ["Admissions", "#admissions"], ["Campus", "#campus"], ["Leadership", "#leadership"], ["Contact", "#enquire"]].map(([label, href]) => (
+            {[
+              ["Programs", "#programs"],
+              ["Admissions", "#admissions"],
+              ["Campus", "#campus"],
+              ["Location & Map", "#location"],
+              ["Leadership", "#leadership"],
+              ["Contact", "#enquire"],
+            ].map(([label, href]) => (
               <a key={href} href={href} onClick={() => setMenuOpen(false)} className="border-b border-border py-3 text-sm">{label}</a>
             ))}
+            <div className="pt-3 pb-2 flex flex-col gap-2">
+              <a
+                href={LMS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between rounded-sm border border-border bg-muted/40 px-3.5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted"
+              >
+                <span className="flex items-center gap-2">
+                  <LogIn className="h-4 w-4 text-magenta" />
+                  <span>LMS Portal Login (agclms.in)</span>
+                </span>
+                <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+              </a>
+              <a
+                href={APPLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-sm bg-gold px-4 py-2.5 text-sm font-semibold text-gold-foreground"
+              >
+                Apply now <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
           </nav>
         )}
       </header>
@@ -557,59 +598,156 @@ function Index() {
           </div>
         </section>
 
-        {/* LOCATION */}
-        <section className="bg-deep px-5 py-20 text-primary-foreground md:px-10 md:py-24 lg:px-16">
+        {/* LOCATION & MAP */}
+        <section id="location" className="scroll-mt-20 bg-deep px-5 py-20 text-primary-foreground md:px-10 md:py-24 lg:px-16">
           <div className="mx-auto max-w-[1312px]">
-            <p className="eyebrow text-gold">Find us</p>
-            <h2 className="font-display mt-4 max-w-xl text-4xl font-semibold leading-[1.05] md:text-5xl">
-              On the historic Grand Trunk Road.
-            </h2>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-primary-foreground/70">
-              Conveniently located at 12 Km Stone on the Amritsar-Jalandhar National Highway (NH-3), easily accessible by air, rail, and dedicated college transit.
-            </p>
-
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { Icon: Train, label: "Railway Station", detail: "Amritsar Jn", dist: "14 km" },
-                { Icon: Plane, label: "International Airport", detail: "ATQ Airport", dist: "24 km" },
-                { Icon: Bus, label: "College Bus Fleet", detail: "40+ Routes across Punjab", dist: "" },
-                { Icon: Building2, label: "City Bus Stand", detail: "Amritsar ISBT", dist: "12 km" },
-              ].map(({ Icon, label, detail, dist }) => (
-                <div key={label} className="flex items-start gap-4">
-                  <Icon className="mt-1 h-5 w-5 shrink-0 text-gold" />
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-foreground/60">{label}</p>
-                    <p className="font-display mt-1 font-semibold">{detail}</p>
-                    {dist && <p className="text-sm text-primary-foreground/60">{dist}</p>}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 grid gap-8 border-t border-primary-foreground/20 pt-10 sm:grid-cols-2">
-              <div className="flex items-start gap-4">
-                <MapPin className="mt-1 h-5 w-5 shrink-0 text-magenta" />
-                <div>
-                  <p className="font-semibold">Campus Address</p>
-                  <p className="mt-1 text-sm leading-relaxed text-primary-foreground/70">
-                    Amritsar Group of Colleges (AGC)<br />
-                    12 Km Stone, Amritsar-Jalandhar G.T. Road (NH-3),<br />
-                    Post Office Meharbanpur, Amritsar 143001, Punjab, India.
-                  </p>
-                </div>
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+              <div>
+                <p className="eyebrow text-gold">Find us &middot; Campus Location</p>
+                <h2 className="font-display mt-4 max-w-xl text-4xl font-semibold leading-[1.05] md:text-5xl">
+                  On the historic Grand Trunk Road.
+                </h2>
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-primary-foreground/75">
+                  Conveniently situated at 12 Km Stone on the Amritsar-Jalandhar National Highway (NH-3), AGC spans 24 verdant acres with direct highway access and dedicated transit connectivity across Punjab.
+                </p>
               </div>
-              <div className="flex items-start gap-4">
-                <Clock className="mt-1 h-5 w-5 shrink-0 text-magenta" />
-                <div>
-                  <p className="font-semibold">Visiting &amp; Helpdesk Hours</p>
-                  <div className="mt-1 space-y-1 text-sm text-primary-foreground/70">
-                    <p><span className="font-medium text-primary-foreground/90">Mon - Fri</span> &middot; 9:00 AM - 5:00 PM</p>
-                    <p><span className="font-medium text-primary-foreground/90">Saturday (Admissions)</span> &middot; 9:00 AM - 3:00 PM</p>
-                    <p><span className="font-medium text-primary-foreground/90">Sunday &amp; Holidays</span> &middot; Closed (Online Forms Active)</p>
-                  </div>
-                </div>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild variant="gold" className="h-11 px-5 text-xs font-bold uppercase tracking-wider">
+                  <a href={MAP_DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">
+                    <Navigation className="mr-2 h-4 w-4" />
+                    Get Directions
+                  </a>
+                </Button>
+                <Button asChild variant="light" className="h-11 px-5 text-xs font-bold uppercase tracking-wider">
+                  <a href="https://maps.google.com/?q=Amritsar+Group+of+Colleges,+12+Km+Stone,+Amritsar-Jalandhar+G.T.+Road,+Amritsar,+Punjab+143001" target="_blank" rel="noopener noreferrer">
+                    <MapPin className="mr-2 h-4 w-4 text-magenta" />
+                    Open in Maps
+                  </a>
+                </Button>
               </div>
             </div>
+
+            {/* MAP & ADDRESS CARD GRID */}
+            <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+              
+              {/* INTERACTIVE MAP CONTAINER */}
+              <div className="relative flex flex-col overflow-hidden rounded-lg border border-primary-foreground/20 bg-white/5 shadow-2xl backdrop-blur-sm">
+                <div className="flex items-center justify-between border-b border-primary-foreground/15 bg-white/10 px-4 py-3 text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="font-mono font-medium text-primary-foreground/90">Amritsar Group of Colleges Campus &middot; Live Map</span>
+                  </div>
+                  <a
+                    href={MAP_DIRECTIONS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-mono text-[11px] text-gold hover:underline"
+                  >
+                    Directions <ArrowUpRight className="h-3 w-3" />
+                  </a>
+                </div>
+
+                <div className="relative aspect-[16/10] w-full min-h-[360px] flex-1 bg-muted md:min-h-[440px]">
+                  <iframe
+                    title="Amritsar Group of Colleges Campus Location Map"
+                    src={MAP_EMBED_URL}
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                  {/* FLOATING BADGE OVER MAP */}
+                  <div className="pointer-events-none absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-xs rounded-md border border-white/20 bg-deep/95 p-3.5 shadow-lg backdrop-blur-md">
+                    <p className="text-xs font-bold text-gold">Amritsar Group of Colleges (AGC)</p>
+                    <p className="mt-1 text-[11px] text-primary-foreground/80 leading-snug">
+                      12 Km Stone, Amritsar-Jalandhar G.T. Road (NH-3), Amritsar, Punjab 143001
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* ADDRESS & CONNECTIVITY DETAILS */}
+              <div className="flex flex-col justify-between gap-6 rounded-lg border border-primary-foreground/20 bg-white/[0.04] p-6 md:p-8 backdrop-blur-sm">
+                
+                {/* OFFICIAL ADDRESS */}
+                <div>
+                  <div className="flex items-start gap-3.5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-magenta/20 text-magenta">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-gold">Official College Address</p>
+                      <h3 className="font-display mt-1 text-xl font-semibold text-white">Amritsar Group of Colleges</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-primary-foreground/80">
+                        12 Km Stone, Amritsar-Jalandhar G.T. Road (NH-3),<br />
+                        Post Office Meharbanpur, Amritsar &ndash; 143001,<br />
+                        Punjab, India.
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                        <span className="rounded bg-white/10 px-2.5 py-1 text-primary-foreground/80 font-mono">PIN: 143001</span>
+                        <span className="rounded bg-white/10 px-2.5 py-1 text-primary-foreground/80">Affiliated to IKGPTU</span>
+                        <span className="rounded bg-white/10 px-2.5 py-1 text-primary-foreground/80">Autonomous Status</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* VISITING HOURS */}
+                <div className="border-t border-primary-foreground/15 pt-5">
+                  <div className="flex items-start gap-3.5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gold/20 text-gold">
+                      <Clock className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-gold">Admissions &amp; Visiting Hours</p>
+                      <div className="mt-2 space-y-1.5 text-sm text-primary-foreground/80">
+                        <div className="flex justify-between border-b border-primary-foreground/10 pb-1">
+                          <span>Monday &ndash; Friday</span>
+                          <span className="font-medium text-white">9:00 AM &ndash; 5:00 PM</span>
+                        </div>
+                        <div className="flex justify-between border-b border-primary-foreground/10 pb-1">
+                          <span>Saturday (Admissions Desk)</span>
+                          <span className="font-medium text-white">9:00 AM &ndash; 3:00 PM</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Sunday &amp; Gazetted Holidays</span>
+                          <span className="text-primary-foreground/60">Closed (Online Applications Active)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* QUICK CONNECTIVITY STATS */}
+                <div className="border-t border-primary-foreground/15 pt-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-primary-foreground/60 mb-3">Transit &amp; Distance</p>
+                  <div className="grid grid-cols-2 gap-3 text-xs sm:grid-cols-4">
+                    <div className="rounded bg-white/5 p-3">
+                      <Train className="h-4 w-4 text-gold mb-1" />
+                      <p className="font-semibold text-white">14 km</p>
+                      <p className="text-primary-foreground/60 text-[11px]">Amritsar Jn</p>
+                    </div>
+                    <div className="rounded bg-white/5 p-3">
+                      <Plane className="h-4 w-4 text-gold mb-1" />
+                      <p className="font-semibold text-white">24 km</p>
+                      <p className="text-primary-foreground/60 text-[11px]">ATQ Airport</p>
+                    </div>
+                    <div className="rounded bg-white/5 p-3">
+                      <Building2 className="h-4 w-4 text-gold mb-1" />
+                      <p className="font-semibold text-white">12 km</p>
+                      <p className="text-primary-foreground/60 text-[11px]">ISBT Bus Stand</p>
+                    </div>
+                    <div className="rounded bg-white/5 p-3">
+                      <Bus className="h-4 w-4 text-gold mb-1" />
+                      <p className="font-semibold text-white">40+ Routes</p>
+                      <p className="text-primary-foreground/60 text-[11px]">College Fleet</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -642,11 +780,14 @@ function Index() {
                 <div className="flex items-start gap-4">
                   <MapPin className="h-5 w-5 shrink-0 text-magenta" />
                   <span>
-                    <strong className="block font-semibold">Visit</strong>
+                    <strong className="block font-semibold">Visit Campus</strong>
                     <span className="mt-1 block text-muted-foreground">
                       12 Km Stone, Amritsar-Jalandhar G.T. Road,<br />
                       Amritsar 143001, Punjab, India
                     </span>
+                    <a href="#location" className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-magenta hover:underline">
+                      View live interactive map &darr;
+                    </a>
                   </span>
                 </div>
               </div>
@@ -712,8 +853,10 @@ function Index() {
               <a href="#programs" className="hover:text-gold">Programs</a>
               <a href="#admissions" className="hover:text-gold">Admissions</a>
               <a href="#campus" className="hover:text-gold">Campus</a>
+              <a href="#location" className="hover:text-gold">Location &amp; Map</a>
               <a href="#leadership" className="hover:text-gold">Leadership</a>
               <a href="#enquire" className="hover:text-gold">Contact</a>
+              <a href={LMS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gold flex items-center gap-1">LMS Login &#8599;</a>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gold">WhatsApp &#8599;</a>
             </div>
           </div>

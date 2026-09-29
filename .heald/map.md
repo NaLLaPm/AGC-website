@@ -1,0 +1,116 @@
+---
+type: map
+---
+
+# Repository Map
+
+- .prettierignore
+- .prettierrc
+- AGENTS.md
+- README.md
+- bun.lock
+- bunfig.toml
+- components.json
+- eslint.config.js
+- package.json
+- public/ (2 files, 476 bytes)
+  - favicon.svg
+  - robots.txt
+- roadmap.md
+- src/ (85 files, 1295203 bytes)
+  - assets/ (27 files, 1078022 bytes)
+    - accreditations/ (10 files, 539257 bytes)
+      - aicte.jpg
+      - aicte.png
+      - naac.jpg
+      - naac.png
+      - nba.jpg
+      - nba.png
+      - pci.jpg
+      - pci.png
+      - ugc.jpg
+      - ugc.png
+    - agc-campus.jpg
+    - agc-logo.png
+    - companies/ (11 files, 84822 bytes)
+      - accenture.png
+      - amazon.jpg
+      - cognizant.jpg
+      - dell.png
+      - ericsson.jpg
+      - hcl.png
+      - ibm.jpg
+      - infosys.png
+      - nagarro.png
+      - tcs.png
+      - wipro.jpg
+    - faculty/ (4 files, 280040 bytes)
+      - amit-sharma.jpg
+      - gaurav-tejpal.jpg
+      - rajneesh-arora.jpg
+      - vk-banga.webp
+  - components/ (46 files, 153493 bytes)
+    - ui/ (46 files, 153493 bytes)
+      - accordion.tsx
+      - alert-dialog.tsx
+      - alert.tsx
+      - aspect-ratio.tsx
+      - avatar.tsx
+      - badge.tsx
+      - breadcrumb.tsx
+      - button.tsx
+      - calendar.tsx
+      - card.tsx
+      - carousel.tsx
+      - chart.tsx
+      - checkbox.tsx
+      - collapsible.tsx
+      - command.tsx
+      - context-menu.tsx
+      - dialog.tsx
+      - drawer.tsx
+      - dropdown-menu.tsx
+      - form.tsx
+      - hover-card.tsx
+      - input-otp.tsx
+      - input.tsx
+      - label.tsx
+      - menubar.tsx
+      - navigation-menu.tsx
+      - pagination.tsx
+      - popover.tsx
+      - progress.tsx
+      - radio-group.tsx
+      - resizable.tsx
+      - scroll-area.tsx
+      - select.tsx
+      - separator.tsx
+      - sheet.tsx
+      - sidebar.tsx
+      - skeleton.tsx
+      - slider.tsx
+      - sonner.tsx
+      - switch.tsx
+      - table.tsx
+      - tabs.tsx
+      - textarea.tsx
+      - toggle-group.tsx
+      - toggle.tsx
+      - tooltip.tsx
+  - hooks/ (1 files, 595 bytes)
+    - use-mobile.tsx
+  - lib/ (3 files, 4555 bytes)
+    - error-capture.ts
+    - error-page.ts
+    - utils.ts
+  - routeTree.gen.ts
+  - router.tsx
+  - routes/ (3 files, 47772 bytes)
+    - README.md
+    - __root.tsx
+    - index.tsx
+  - server.ts
+  - start.ts
+  - styles.css
+- tsconfig.json
+- vite.config.ts

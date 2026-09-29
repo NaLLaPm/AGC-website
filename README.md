@@ -1,92 +1,48 @@
-# Apply Now Portal
+# AGC Amritsar — Admissions Portal
 
-Here's the plan.
-
-
+A single-page admissions experience for **Amritsar Group of Colleges**.
 
 **Goal:** Turn prospective students and parents into applicants. One primary action everywhere: **Apply now**.
 
-
-
-**Stack:** Vite + React, plain CSS, deployed on Vercel or Netlify.
-
-
+**Stack:** Vite + React (TanStack Router), Tailwind CSS, TypeScript.
 
 **Design**
 
-- Concept: "sarovar reflection" hero, with the headline rippling in its own reflection.
-
-- Colours: teal #06262A and #0A3D42, marble #EDF2F0, gold #D9A93A, magenta #B4245D as a tiny accent.
-
+- Colours: teal `#06262A` / `#0A3D42`, marble `#EDF2F0`, gold `#D9A93A`, magenta `#B4245D` as accent.
 - Fonts: Bricolage Grotesque for headings, Instrument Sans for body.
-
-- Motion: one hero entrance, one ripple, and reduced-motion respected.
-
-
+- Motion: hero entrance, ripple effect, reduced-motion respected.
 
 **Sections, in order**
 
 1. Sticky nav with an Apply button
-
 2. Hero: headline, badge, two CTAs (Apply, Call)
-
 3. Recruiter strip
-
 4. Programs, with tabs by school
-
 5. Admissions, four steps
-
-6. Campus facts and FAQ
-
+6. Campus life and FAQ
 7. Enquiry form, address, phone
-
 8. Footer
-
-
-
-**Steps**
-
-
-
-1. **Content:** collect real photos, logo, fees, dates, and placement numbers from AGC. Nothing invented.
-
-2. **Build:** scaffold, tokens, sections (done in the first draft).
-
-3. **Form:** connect it to email or Google Sheets, with WhatsApp click-to-chat.
-
-4. **Polish:** real photos, mobile sticky bar (Apply, Call, WhatsApp), favicon, OG image.
-
-5. **SEO and speed:** meta tags, JSON-LD, compressed images, Lighthouse 90+.
-
-6. **Launch:** deploy, connect the domain, add analytics events on Apply, Call, and form submit.
-
-
-
-**Open items I need from you**
-
-- Is this for the college itself or a student project?
-
-- Real photos and logo available?
-
-- Where should enquiries go?
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/434db1f0-efb1-5180-92e3-81ebae509190).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+You need Node.js — install with [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) or [fnm](https://github.com/Schniz/fnm).
 
 ```sh
 git clone <this-repository-url>
-cd <repository-name>
-npm i
+cd AGC-website
+npm install
 npm run dev
 ```
+
+## Build
+
+```sh
+npm run build
+```
+
+## Open items
+
+- Connect enquiry form to an email delivery service or Google Sheets.
+- Verify all fees, dates, and program details directly with AGC.
+- Add OG image and finalize favicon.
+- Lighthouse audit and SEO meta review before launch.

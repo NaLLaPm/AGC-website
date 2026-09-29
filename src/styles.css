@@ -71,9 +71,17 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .faq-item summary { list-style: none; cursor: pointer; }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary svg { transition: transform .2s ease; }
+
+/* Recruiter ticker */
+.ticker-wrap { overflow: hidden; mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%); }
+.ticker-track { display: flex; width: max-content; gap: 0; animation: ticker-scroll 38s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+
 @keyframes rise-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes reflect { 0%,100% { transform: scaleY(-1) skewX(0deg); } 50% { transform: scaleY(-1) skewX(1.5deg); } }
 @keyframes ripple { 10% { opacity: .45; } 100% { transform: scale(1.8); opacity: 0; } }
+@keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 @media (max-width: 767px) {
   .hero-scene::before { background: linear-gradient(0deg, oklch(0.14 0.03 193 / 95%) 0%, oklch(0.16 0.03 193 / 72%) 56%, oklch(0.16 0.03 193 / 16%) 100%); }
   .hero-photo { object-position: center; }

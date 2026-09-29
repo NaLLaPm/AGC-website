@@ -55,7 +55,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<EnquiryField, string>>>({});
   const [emailOpened, setEmailOpened] = useState(false);
-  const selected = schools[activeSchool];
+  const selected = schools[activeSchool] ?? schools[0];
 
   function handleEnquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -98,18 +98,18 @@ function Index() {
     </header>
 
     <main id="top">
-      <section className="hero-scene flex min-h-[690px] items-center text-primary-foreground md:min-h-[680px] lg:min-h-[720px]" aria-labelledby="hero-heading">
+      <section className="hero-scene flex min-h-[610px] items-center text-primary-foreground md:min-h-[680px] lg:min-h-[720px]" aria-labelledby="hero-heading">
         <img src={heroImage} width={1600} height={1008} alt="Illustrative architectural reflecting pool, not a photograph of AGC" className="hero-photo" fetchPriority="high" />
         <div className="hero-ripple" aria-hidden="true" />
-        <div className="mx-auto w-full max-w-[1440px] px-5 pb-24 pt-24 md:px-10 lg:px-16">
+        <div className="mx-auto w-full max-w-[1440px] px-5 pb-12 pt-12 md:px-10 md:pb-24 md:pt-24 lg:px-16">
           <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 border border-primary-foreground/40 px-3 py-2 text-[10px] font-semibold uppercase tracking-[.15em] sm:text-xs"><span className="h-1.5 w-1.5 rounded-full bg-magenta" />Admissions 2026 · Amritsar, Punjab</span>
-            <div className="hero-title mt-8 md:mt-10">
+            <div className="hero-title mt-6 md:mt-10">
               <h1 id="hero-heading" className="font-display max-w-[850px] text-[clamp(3.5rem,7vw,7.5rem)] font-semibold leading-[.98]">A future worth <span className="text-gold">reflecting</span> on.</h1>
-              <span className="hero-reflection font-display mt-1 max-w-[850px] text-[clamp(3.5rem,7vw,7.5rem)] font-semibold leading-[.98] text-gold" aria-hidden="true">A future worth reflecting on.</span>
+              <span className="hero-reflection font-display mt-1 text-[clamp(3.5rem,7vw,7.5rem)] font-semibold text-gold" aria-hidden="true">reflecting</span>
             </div>
             <p className="relative z-10 mt-0 max-w-xl text-base leading-relaxed text-primary-foreground/90 md:mt-2 md:text-lg">Explore your possibilities at Amritsar Group of Colleges. The next chapter starts with one decision.</p>
-            <div className="relative z-10 mt-8 flex flex-wrap gap-3"><ApplyLink className="h-12 px-7 text-sm" /><Button asChild variant="light" className="h-12 px-6"><a href={CALL_URL}><Phone /> Call admissions</a></Button></div>
+            <div className="relative z-10 mt-6 flex flex-wrap gap-3 md:mt-8"><ApplyLink className="h-12 px-7 text-sm" /><Button asChild variant="light" className="h-12 px-6"><a href={CALL_URL}><Phone /> Call admissions</a></Button></div>
           </div>
         </div>
         <p className="absolute bottom-5 right-5 z-10 text-[10px] text-primary-foreground/70 md:right-10">Concept image · not AGC campus photography</p>
@@ -154,6 +154,6 @@ function Index() {
   </div>;
 }
 
-function Field({ label, name, type = "text", error }: { label: string; name: string; type?: string; error?: string }) {
+function Field({ label, name, type = "text", error }: { label: string; name: string; type?: string; error?: string | undefined }) {
   return <div><label htmlFor={name} className="mb-2 block text-sm font-semibold">{label} <span className="text-magenta">*</span></label><input id={name} name={name} type={type} maxLength={name === "phone" ? 20 : name === "email" ? 255 : 100} autoComplete={name === "name" ? "name" : name === "email" ? "email" : "tel"} className="form-field" aria-invalid={Boolean(error)} aria-describedby={error ? `${name}-error` : undefined} />{error && <p id={`${name}-error`} className="mt-1 text-xs text-magenta">{error}</p>}</div>;
 }

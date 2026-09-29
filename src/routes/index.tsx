@@ -17,7 +17,7 @@ const schools = [
   { name: "Computing", intro: "Turn curiosity into capability.", courses: ["Bachelor of Computer Applications", "Master of Computer Applications"], link: "https://agcamritsar.in/explore-programs.php" },
   { name: "Pharmacy", intro: "Make a difference in health.", courses: ["Bachelor of Pharmacy", "Diploma in Pharmacy", "Doctor of Pharmacy"], link: "https://agcamritsar.in/explore-programs.php" },
   { name: "More schools", intro: "Find a path that feels like yours.", courses: ["Hotel Management & Tourism", "Allied Health Sciences", "Fashion Design", "Law"], link: "https://agcamritsar.in/explore-programs.php" },
-];
+] as const;
 
 const enquirySchema = z.object({
   name: z.string().trim().min(2, "Please enter your name.").max(100),
